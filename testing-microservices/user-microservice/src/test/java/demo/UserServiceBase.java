@@ -1,18 +1,17 @@
 package demo;
 
-import com.jayway.restassured.module.mockmvc.RestAssuredMockMvc;
+import static org.mockito.BDDMockito.given;
+
 import demo.user.AuthService;
 import demo.user.User;
 import demo.user.UserController;
 import demo.user.UserService;
+import io.restassured.module.mockmvc.RestAssuredMockMvc;
 import org.junit.Before;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
-import sun.security.acl.PrincipalImpl;
-
-import static org.mockito.BDDMockito.given;
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(UserController.class)
@@ -31,11 +30,11 @@ public class UserServiceBase {
   actual.setLastModified(12345L);
   actual.setCreatedAt(12345L);
   actual.setId(0L);
-  given(this.userService.getUserByPrincipal(new PrincipalImpl("user")))
+  given(this.userService.getUserByPrincipal(new User("user", "Jack", "Frost", "jfrost@example.com")))
    .willReturn(actual);
 
   given(this.authService.getAuthenticatedUser(null)).willReturn(
-   new PrincipalImpl("user"));
+          new User("user", "Jack", "Frost", "jfrost@example.com"));
 
   RestAssuredMockMvc.standaloneSetup(new UserController(userService,
    authService));

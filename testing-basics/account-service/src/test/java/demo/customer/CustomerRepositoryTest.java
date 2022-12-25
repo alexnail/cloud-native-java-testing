@@ -55,7 +55,7 @@ public class CustomerRepositoryTest {
 
   this.entityManager.persist(customer);
 
-  Customer actual = customerRepository.findOne(customer.getId());
+  Customer actual = customerRepository.findById(customer.getId()).get();
 
   assertThat(actual).isNotNull();
   assertThat(actual.getFirstName()).isEqualTo("Jane");
