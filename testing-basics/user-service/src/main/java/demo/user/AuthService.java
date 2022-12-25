@@ -7,6 +7,6 @@ import org.springframework.stereotype.Service;
 public class AuthService {
 
  public Principal getAuthenticatedUser(Principal principal) {
-  return principal == null ? new User() : principal;
+  return principal == null ? () -> "user" : principal;
  }
 }

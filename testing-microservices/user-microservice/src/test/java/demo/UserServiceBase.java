@@ -17,30 +17,29 @@ import org.springframework.test.context.junit4.SpringRunner;
 @WebMvcTest(UserController.class)
 public class UserServiceBase {
 
- @MockBean
- private UserService userService;
+    @MockBean
+    private UserService userService;
 
- @MockBean
- private AuthService authService;
+    @MockBean
+    private AuthService authService;
 
- @Before
- public void setup() {
+    @Before
+    public void setup() {
 
-  User actual = new User("user", "Jack", "Frost", "jfrost@example.com");
-  actual.setLastModified(12345L);
-  actual.setCreatedAt(12345L);
-  actual.setId(0L);
-  given(this.userService.getUserByPrincipal(new User("user", "Jack", "Frost", "jfrost@example.com")))
-   .willReturn(actual);
+        User actual = new User("user", "Jack", "Frost", "jfrost@example.com");
+        actual.setLastModified(12345L);
+        actual.setCreatedAt(12345L);
+        actual.setId(0L);
+        given(this.userService.getUserByPrincipal(() -> "user"))
+                .willReturn(actual);
 
-  given(this.authService.getAuthenticatedUser(null)).willReturn(
-          new User("user", "Jack", "Frost", "jfrost@example.com"));
+        given(this.authService.getAuthenticatedUser(null))
+                .willReturn(() -> "user");
 
-  RestAssuredMockMvc.standaloneSetup(new UserController(userService,
-   authService));
- }
+        RestAssuredMockMvc.standaloneSetup(new UserController(userService, authService));
+    }
 
- public void assertThatRejectionReasonIsNull(Object rejectionReason) {
-  assert rejectionReason == null;
- }
+    public void assertThatRejectionReasonIsNull(Object rejectionReason) {
+        assert rejectionReason == null;
+    }
 }
