@@ -20,8 +20,7 @@ import static org.springframework.boot.test.context.SpringBootTest.*;
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = WebEnvironment.NONE)
 @AutoConfigureStubRunner(
-        ids = { "cnj:user-microservice:+:stubs:8081" },
-        workOffline = true) // <1>
+        ids = { "cnj:user-microservice:+:stubs:8081" }/*, workOffline = true*/) // <1>
 //@formatter:on
 public class ConsumerDrivenTests {
 

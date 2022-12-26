@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class AuthService {
 
- public Principal getAuthenticatedUser(Principal principal) {
-  return principal == null ? () -> "user" : principal;
- }
+    public Principal getAuthenticatedUser(Principal principal) {
+        return principal == null ? () -> "user" : principal;
+    }
 }
