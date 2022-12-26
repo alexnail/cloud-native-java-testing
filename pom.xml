@@ -10,10 +10,9 @@
     <parent>
         <groupId>cnj</groupId>
         <artifactId>parent</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
+        <version>2.0.0-SNAPSHOT</version>
         <relativePath/>
     </parent>
-
 
     <artifactId>testing</artifactId>
 
@@ -27,7 +26,7 @@
             <plugin>
                 <groupId>org.jfrog.buildinfo</groupId>
                 <artifactId>artifactory-maven-plugin</artifactId>
-                <version>2.4.0</version>
+                <version>3.5.1</version>
                 <inherited>false</inherited>
                 <executions>
                     <execution>
